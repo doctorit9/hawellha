@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Hawellha
+Comment=Files Convertor
+Type=Application
+Icon=io.github.doctorit
+Exec=hawellha %F
+Terminal=false
+StartupNotify=true
+Categories=COSMIC
+Keywords=COSMIC
+MimeType=

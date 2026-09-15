@@ -1,0 +1,85 @@
+[package]
+name = "hawellha"
+version = "0.1.0"
+edition = "2024"
+license = "MPL-2.0"
+description = "Hawellha (تحويلها) — universal file converter for COSMIC Desktop"
+repository = "https://github.com/doctorit9/hawellha.git"
+rust-version = "1.93"
+
+[dependencies]
+# --- COSMIC / GUI ---
+i18n-embed = { version = "0.16", features = [
+    "fluent-system",
+    "desktop-requester",
+] }
+i18n-embed-fl = "0.10"
+open = "5.3.2"
+rust-embed = "8.8.0"
+tokio = { version = "1.48.0", features = ["full"] }
+
+# --- Data / serialization ---
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+csv = "1.4"
+calamine = "0.36"
+rust_xlsxwriter = "0.99"
+
+# --- Images ---
+image = { version = "0.25", default-features = false, features = [
+    "png",
+    "jpeg",
+    "webp",
+    "bmp",
+    "tiff",
+    "gif",
+    "rayon",
+] }
+
+# --- Documents (txt/md -> pdf, pdf -> txt) ---
+printpdf = "0.8"
+pdf-extract = "0.12"
+
+# --- Archives ---
+zip = "2"
+tar = "0.4"
+flate2 = "1.0"
+
+# --- Misc helpers ---
+mime_guess = "2.0"
+dirs = "6.0"
+notify-rust = "4.18"
+thiserror = "2.0"
+url = "2.5"
+
+[build-dependencies]
+xdgen = "0.1"
+
+[dependencies.libcosmic]
+git = "https://github.com/pop-os/libcosmic.git"
+# See https://github.com/pop-os/libcosmic/blob/master/Cargo.toml for available features.
+# Remove features if not needed.
+features = [
+    # About widget for the app
+    "about",
+    # On app startup, focuses an existing instance if the app is already open
+    "single-instance",
+    # Markdown widget
+    "markdown",
+    # QR code widget
+    "qr_code",
+    # GPU-accelerated rendering
+    "wgpu",
+    # xdg portal dialogs on Linux
+    "xdg-portal"
+]
+
+# Uncomment to test a locally-cloned libcosmic
+# [patch.'https://github.com/pop-os/libcosmic']
+# libcosmic = { path = "../libcosmic" }
+# cosmic-config = { path = "../libcosmic/cosmic-config" }
+# cosmic-theme = { path = "../libcosmic/cosmic-theme" }
+
+[profile.release]
+# Faster COSMIC link times; re-enable LTO for distribution builds if desired.
+lto = false

@@ -1,0 +1,10 @@
+app-title = Hawellha
+app-comment = Universal file converter (Data, Images, Audio, Documents, Archives)
+app-keywords =
+about = About
+settings = Settings
+repository = Repository
+view = View
+welcome = Welcome to COSMIC! ✨
+page-id = Page { $num }
+git-description = Git commit {$hash} on {$date}
